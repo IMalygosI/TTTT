@@ -1,0 +1,175 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1900" d:DesignHeight="980"
+		MaxHeight="980" MinHeight="650"
+		MaxWidth="1900" MinWidth="1400"
+        x:Class="Examen_Test.MainWindow"
+		x:CompileBindings="False"
+		WindowStartupLocation="CenterScreen"
+        Title="Главное Окно">
+	<Grid ShowGridLines="False"
+		  ColumnDefinitions="*,*,*"
+		  RowDefinitions="*,9*,*">
+
+		<StackPanel HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					Grid.ColumnSpan="2"
+					Grid.Row="0"
+					Margin="20 5 20 10">
+			<Image Source="/Assets/school_logo.png"
+				   HorizontalAlignment="Left"
+				   Margin="0 0 0 10"
+				   Height="45"
+				   Width="45"/>
+			
+			<DockPanel>
+				<TextBox Watermark="Поиск"
+						 Name="Search"
+						 Height="30"
+						 Width="550"
+						 CornerRadius="10"
+						 TextChanged="TextBox_TextChanged"/>
+
+				<ComboBox Name="BoxOneCost"
+						  Width="200"
+						  SelectedIndex="0"
+						  CornerRadius="15"
+						  Margin="10 0 0 0">
+					<ComboBoxItem CornerRadius="15">Сортировка</ComboBoxItem>
+					<ComboBoxItem CornerRadius="15">Цена по возрастанию ↑</ComboBoxItem>
+					<ComboBoxItem CornerRadius="15">Цена по убыванию ↓</ComboBoxItem>
+				</ComboBox>
+
+				<ComboBox Name="BoxTwoManufacturer"
+						  Width="200"
+						  CornerRadius="15"
+						  Margin="10 0 0 0">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Name}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				
+			</DockPanel>
+		</StackPanel>
+
+		<DockPanel Grid.Column="1"
+				   Grid.Row="2"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center">
+			<TextBlock Name="ListboxIsBasePokaz"
+					   Text=""
+					   FontWeight="Bold"/>
+			<TextBlock Text="  Из  "/>
+			<TextBlock Text=""
+					   Name="InBase"
+					   FontWeight="Bold"/>
+		</DockPanel>
+
+		<DockPanel Grid.Column="0"
+				   Grid.Row="2"
+				   Margin="20 0 0 20"
+				   HorizontalAlignment="Left"
+				   VerticalAlignment="Center">
+			<Button Height="30"
+					Width="100"
+					CornerRadius="10"
+					Name="Dobavit"
+					Click="Button_Click_Dobavit"
+					Background="#04a0ff">
+				<TextBlock Text="Добавить"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Foreground="White"/>
+			</Button>
+			
+			<Button Height="30"
+					Width="100"
+					CornerRadius="10"
+					Name="Delete"
+					Click="Button_Click_Delete"
+					Margin="10 0 0 0"
+					Background="#04a0ff">
+				<TextBlock Text="Удалить"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Foreground="White"/>
+			</Button>
+		</DockPanel>
+		
+		<ListBox Name="ListBox_Examen_Test"
+				 BorderThickness="2"
+				 CornerRadius="20"
+				 BorderBrush="Gray"
+				 Background="#e7fabf"
+				 Margin="20"
+				 DoubleTapped="ListBox_DoubleTapped_Redact"
+				 Grid.ColumnSpan="3"
+				 Grid.Row="1">
+			
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel HorizontalAlignment="Center"/>
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border BorderThickness="1"
+							CornerRadius="20"
+							Margin="5"
+							BorderBrush="Black"
+							Background="{Binding Colors}">
+						<Grid ShowGridLines="False"
+							  ColumnDefinitions="120,120,120"
+							  RowDefinitions="150,150,150,150">
+							
+							<Image Source="{Binding Image}"
+								   Height="450"
+								   Width="300"
+								   Grid.ColumnSpan="3"
+								   Grid.RowSpan="3"/>
+
+							<StackPanel Grid.ColumnSpan="3"
+										Grid.Row="3"
+										HorizontalAlignment="Center"
+										VerticalAlignment="Top">								
+								
+								<DockPanel HorizontalAlignment="Center"
+										   VerticalAlignment="Top"
+										   Margin="0 10 0 0">
+									<TextBlock Text="⚫"/>
+									<TextBlock Text="  "/>
+									<TextBlock Text="⚫"/>
+									<TextBlock Text="  "/>
+									<TextBlock Text="⚫"/>
+								</DockPanel>
+								
+								<TextBlock Text="{Binding Title}"
+										   TextWrapping="Wrap"
+										   Margin="0 10 0 0"/>
+								<DockPanel HorizontalAlignment="Center"
+										   VerticalAlignment="Top"
+										   Margin="0 10 0 0">
+									<TextBlock Text="{Binding Cost}"/>
+									<TextBlock Text=" Руб."
+											   TextWrapping="Wrap"/>
+								</DockPanel>
+								
+								<TextBlock Text="{Binding Actives}"
+										   Margin="0 10 0 0"
+										   HorizontalAlignment="Center"
+										   VerticalAlignment="Center"
+										   TextWrapping="Wrap"/>
+							</StackPanel>
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	
+	</Grid>
+</Window>
